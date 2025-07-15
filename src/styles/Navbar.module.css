@@ -1,0 +1,302 @@
+@font-face {
+    font-family: "28 Days Later";
+    src: url('../static-fonts/28 Days Later.ttf');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+.homenavbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    height: 68px;
+    padding: 0 4%;
+    margin: auto;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: all 300ms ease-in-out;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    height: 68px;
+    padding: 0 4%;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(16px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: all 300ms ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.navbarscroll {
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(16px);
+    transition: all 300ms ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.navleft {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.logoContainer {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    font-family: 'Bebas Neue', sans-serif;
+    margin-right: 20px;
+}
+
+.logoLink {
+    font-size: 2.6rem;
+    margin: 0;
+    line-height: normal;
+    text-decoration: none;
+    letter-spacing: 1.5px;
+}
+
+.logoText {
+    display: flex;
+    align-items: center;
+}
+
+.logoHighlight {
+    color: #1a365d;
+    text-shadow: 0 0 10px rgba(26, 54, 93, 0.4);
+}
+
+
+.navItemsContainer {
+    display: flex;
+    gap: 26px;
+    margin: 0;
+    align-items: center;
+    height: 100%;
+}
+
+.navItem {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 6px 0;
+}
+
+.navItem:hover {
+    color: white;
+}
+
+.navItem::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #1a365d;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}
+
+.navItem:hover::after {
+    transform: scaleX(1);
+}
+
+.navright {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    /* border: 1px solid white; */
+}
+
+.searchButton {
+    width: 36px;
+    height: 36px;
+    outline: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    border-radius: 50%;
+}
+
+.searchButton:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navIcon {
+    font-size: 1.1rem;
+    color: white;
+}
+
+.notificationButton {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    border-radius: 50%;
+}
+
+.notificationButton:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.profileTrigger {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.profileTrigger:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdownIcon {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.profileDropdown {
+    background-color: #141414;
+    border: 1px solid #333;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+}
+
+@media(max-width:1280px){
+    .homenavbar{
+        padding: 0 3%;
+    }
+}
+
+@media(max-width:768px) {
+    .navItemsContainer {
+        display: none;
+    }
+    .navright{
+        gap: 15px;
+    }
+    .mobileMenuButton {
+        display: flex;
+    }
+    .homenavbar, .navbar {
+        padding: 0 5%;
+    }
+}
+
+.toggle{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Mobile Menu Styles */
+.mobileMenuButton {
+    display: none;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(26, 54, 93, 0.8);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.3rem;
+    transition: all 0.2s ease;
+    order: -1; /* Show before other nav elements */
+}
+
+.mobileMenuButton:hover {
+    background-color: rgba(26, 54, 93, 0.4);
+}
+
+.mobileMenuOverlay {
+    position: fixed;
+    top: 68px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 49;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.3s ease;
+}
+
+.mobileMenuContent {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.mobileNavItem {
+    color: white;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 20px 0;
+    margin: 5px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.mobileNavItem:hover {
+    color: #1a365d;
+    padding-left: 10px;
+}
+
+.mobileNavButton {
+    margin-top: 20px;
+    background-color: #1a365d;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mobileNavButton:hover {
+    background-color: #14294d;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
