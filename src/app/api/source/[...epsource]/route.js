@@ -4,15 +4,15 @@ import { NextResponse, NextRequest } from "next/server"
 
 async function consumetEpisode(id, subtype) {
     try {
-      // Instead of using subType parameter, check if subtype is 'dub' and set the dub parameter
-      const isDub = subtype?.toLowerCase() === 'dub';
-      console.log(`Making Consumet API request: ${process.env.API_URI}/watch?episodeId=${id}?dub=${isDub}`);
+      // Use the new URL format with type parameter instead of dub parameter
+      const audioType = subtype?.toLowerCase() === 'dub' ? 'dub' : 'sub';
+      console.log(`Making Consumet API request: ${process.env.API_URI}/watch?episodeId=${id}&type=${audioType}`);
       
       const { data } = await axios.get(
-        `${process.env.API_URI}/watch?episodeId=${id}?dub=${isDub}`
+        `${process.env.API_URI}/watch?episodeId=${id}&type=${audioType}`
       );
       
-      console.log(`Received response from Consumet API with ${data?.sources?.length || 0} sources for ${isDub ? 'DUB' : 'SUB'} request`);
+      console.log(`Received response from Consumet API with ${data?.sources?.length || 0} sources for ${audioType.toUpperCase()} request`);
       
       // Apply m3u8 proxy to sources for CORS handling
       if (data && data.sources) {
