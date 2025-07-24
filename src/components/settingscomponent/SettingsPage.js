@@ -32,6 +32,23 @@ function SettingsPage() {
     const settings = useStore(useSettings, (state) => state.settings);
     const [loading, setLoading] = useState(false);
 
+    const handlePlayerChange = (player) => {
+        useSettings.setState({ 
+            settings: { 
+                ...useSettings.getState().settings, 
+                preferredPlayer: player 
+            } 
+        });
+        localStorage.setItem('preferred-player', player);
+    };
+
+    useEffect(() => {
+        // Sync localStorage with state if needed
+        if (settings.preferredPlayer) {
+            localStorage.setItem('preferred-player', settings.preferredPlayer);
+        }
+    }, [settings.preferredPlayer]);
+
     return (
         <div className="bg-black min-h-screen pb-10">
             <div className='relative h-[240px] md:h-[340px]'>
@@ -126,6 +143,47 @@ function SettingsPage() {
                                 onValueChange={(value) => useSettings.setState({ settings: { ...useSettings.getState().settings, audio: value } })}
                             />
                         </div>
+                        
+                        <div className='flex flex-col w-[100%] bg-[#111] p-5 rounded-lg border border-[#333] hover:border-[#444] transition-colors duration-200'>
+                            <p className='text-[18px] md:text-[21px] font-medium text-white flex items-center gap-2 mb-4'>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#1a365d]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Preferred Video Player
+                            </p>
+                            <div className='flex items-center w-[100%] justify-between mb-5 bg-black/30 p-3 rounded-md'>
+                                <div className='mr-4 w-[100%]'>
+                                    <p className='text-[15px] md:text-[18px] font-medium text-white flex items-center gap-2'>
+                                        <span className="bg-[#1a365d] text-white text-xs font-bold px-2 py-1 rounded-full">1</span>
+                                        Vidstack Player
+                                    </p>
+                                    <p className='text-[11px] md:text-[13px] text-[#bfc6d0] lg:max-w-[55%] line-clamp-3 mt-1'>
+                                        Default video player with modern UI and features.
+                                    </p>
+                                </div>
+                                <SwitchSetting
+                                    value={settings.preferredPlayer === 'vidstack'}
+                                    onValueChange={(value) => value && handlePlayerChange('vidstack')}
+                                />
+                            </div>
+                            <div className='flex items-center w-[100%] justify-between bg-black/30 p-3 rounded-md'>
+                                <div className='mr-4 w-[100%]'>
+                                    <p className='text-[15px] md:text-[18px] font-medium text-white flex items-center gap-2'>
+                                        <span className="bg-[#1a365d] text-white text-xs font-bold px-2 py-1 rounded-full">2</span>
+                                        ArtPlayer
+                                    </p>
+                                    <p className='text-[11px] md:text-[13px] text-[#bfc6d0] lg:max-w-[55%] line-clamp-3 mt-1'>
+                                        Alternative player with additional customization options.
+                                    </p>
+                                </div>
+                                <SwitchSetting
+                                    value={settings.preferredPlayer === 'artplayer'}
+                                    onValueChange={(value) => value && handlePlayerChange('artplayer')}
+                                />
+                            </div>
+                        </div>
+                        
                         <div className='flex flex-col w-[100%] bg-[#111] p-5 rounded-lg border border-[#333] hover:border-[#444] transition-colors duration-200'>
                             <p className='text-[18px] md:text-[21px] font-medium text-white flex items-center gap-2 mb-4'>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#1a365d]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
