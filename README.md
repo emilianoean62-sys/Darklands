@@ -1,4 +1,7 @@
-<div align="center"> <a href="https://skyanime.com" target="_blank"> <img src="https://github.com/EternalAnime/skyanime-best-verse-/blob/main/public/android-chrome-512x512.png?raw=true" alt="SkyAnime Logo" width="150" height="150"> </a>
+<div align="center">
+  <a href="https://skyanime.com" target="_blank">
+    <img src="https://github.com/EternalAnime/skyanime-best-verse-/blob/main/public/android-chrome-512x512.png" alt="Logo" width="140" height="140">
+  </a>
 🌌 SkyAnime
 The Future of Anime Streaming — Open Source & Ad-Free
 
@@ -95,7 +98,6 @@ NEXT_PUBLIC_DEV_URL="http://localhost:3000"
 NEXT_PUBLIC_PRODUCTION_URL="https://yourdomain.com"
 Also, in AniList Developer Console, add:
 
-nginx
 Copy
 Edit
 Redirect URI: https://yourdomain.com/api/auth/callback/AniListProvider
