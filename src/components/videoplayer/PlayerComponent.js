@@ -2,17 +2,19 @@
 import React, { useEffect, useState } from 'react'
 import { getSources } from '@/lib/getData';
 import PlayerEpisodeList from './PlayerEpisodeList';
-import Player from './VidstackPlayer/player';
+import VidstackPlayer from './VidstackPlayer/player';
+import ArtPlayer from './ArtPlayer';
 import { Spinner } from '@vidstack/react';
 import { toast } from 'sonner';
-import { useTitle, useNowPlaying, useDataInfo } from '../../lib/store';
+import { useTitle, useNowPlaying, useDataInfo, useSettings } from '../../lib/store';
 import { useStore } from "zustand";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faCircleExclamation, faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
 import EnhancedEpisodeList from './EnhancedEpisodeList';
 
 function PlayerComponent({ id, epId, provider, epNum, subdub, data, session, savedep }) {
     const animetitle = useStore(useTitle, (state) => state.animetitle);
+    const settings = useStore(useSettings, (state) => state.settings);
     const [episodeData, setepisodeData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [groupedEp, setGroupedEp] = useState(null);
@@ -21,6 +23,27 @@ function PlayerComponent({ id, epId, provider, epNum, subdub, data, session, sav
     const [thumbnails, setThumbnails] = useState(null);
     const [skiptimes, setSkipTimes] = useState(null);
     const [error, setError] = useState(false);
+    const [playerType, setPlayerType] = useState(settings.preferredPlayer || 'vidstack'); // 'vidstack' or 'artplayer'
+
+    useEffect(() => {
+        // Update player type if settings change
+        setPlayerType(settings.preferredPlayer || 'vidstack');
+    }, [settings.preferredPlayer]);
+
+    const togglePlayer = () => {
+        const newPlayerType = playerType === 'vidstack' ? 'artplayer' : 'vidstack';
+        setPlayerType(newPlayerType);
+        
+        // Update settings
+        useSettings.setState({ 
+            settings: { 
+                ...useSettings.getState().settings, 
+                preferredPlayer: newPlayerType 
+            } 
+        });
+        
+        toast.success(`Switched to ${newPlayerType === 'vidstack' ? 'Vidstack' : 'ArtPlayer'} player`);
+    };
 
     useEffect(() => {
         useDataInfo.setState({ dataInfo: data });
@@ -142,10 +165,21 @@ function PlayerComponent({ id, epId, provider, epNum, subdub, data, session, sav
     return (
         <div className='xl:w-[99%] max-w-[1800px] mx-auto'>
             <div className='mb-8'>
-                <div className='mb-4'>
+                <div className='mb-4 relative'>
                     {!loading && !error ? (
-                        <div className='h-full w-full aspect-video overflow-hidden rounded-md shadow-lg'>
-                            <Player dataInfo={data} id={id} groupedEp={groupedEp} session={session} savedep={savedep} src={src} subtitles={subtitles} thumbnails={thumbnails} skiptimes={skiptimes} />
+                        <div className='h-full w-full aspect-video overflow-hidden rounded-md shadow-lg relative'>
+                            {playerType === 'vidstack' ? (
+                                <VidstackPlayer dataInfo={data} id={id} groupedEp={groupedEp} session={session} savedep={savedep} src={src} subtitles={subtitles} thumbnails={thumbnails} skiptimes={skiptimes} />
+                            ) : (
+                                <ArtPlayer dataInfo={data} id={id} groupedEp={groupedEp} session={session} savedep={savedep} src={src} subtitles={subtitles} thumbnails={thumbnails} skiptimes={skiptimes} />
+                            )}
+                            <button 
+                                onClick={togglePlayer} 
+                                className="absolute top-2 right-2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full z-50 transition-all"
+                                title={`Switch to ${playerType === 'vidstack' ? 'ArtPlayer' : 'Vidstack'}`}
+                            >
+                                <FontAwesomeIcon icon={faExchangeAlt} className="text-sm" />
+                            </button>
                         </div>
                     ) : (
                         <div className="h-full w-full rounded-md relative flex items-center text-xl justify-center aspect-video border border-solid border-[#333] bg-[#141414] shadow-lg">
