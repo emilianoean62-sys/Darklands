@@ -138,7 +138,7 @@ function Footer() {
                         </div>
                     </div>
                     <div className="text-center lg:text-right">
-                        <p>© {year} <Link href="/" className="text-[#1a365d] hover:text-white transition-colors">SKYANIME™</Link> | Made with ❤️ by <span className="font-medium text-white">Rishab,Abhi,Ansh</span></p>
+                        <p>© {year} <Link href="/" className="text-[#1a365d] hover:text-white transition-colors">SKYANIME™</Link> | Made with ❤️ by <span className="font-medium text-white">Rishab</span></p>
                     </div>
                 </div>
             </footer>
