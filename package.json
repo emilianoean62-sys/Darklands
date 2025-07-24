@@ -19,6 +19,8 @@
     "@next/bundle-analyzer": "^14.1.0",
     "@nextui-org/react": "^2.2.10",
     "@vidstack/react": "^1.10.9",
+    "artplayer": "^5.2.3",
+    "artplayer-plugin-chromecast": "^1.0.0",
     "axios": "^1.6.5",
     "fflate": "^0.8.2",
     "framer-motion": "^10.18.0",
