@@ -124,6 +124,12 @@ Discord Server: Join SkyAnime discord.gg/soupfr
 
 Official Site: https://skyanime.com
 
+📢 Disclaimer
+⚠️ This project is made strictly for educational and personal learning purposes.
+SkyAnime does not host or distribute any copyrighted content.
+Commercial use, monetization, or redistribution of this project is strictly prohibited.
+All rights to anime content belong to their respective owners and licensors.
+
 <div align="center">
 🌀 Made with love by anime fans for anime fans.
 🚀 Powered by open-source.
