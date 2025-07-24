@@ -12,6 +12,7 @@ export const useSettings = create(
                 audio: false,
                 herotrailer: true,
                 bannertrailer: true,
+                preferredPlayer: 'vidstack',
             },
             setSettings: (settings) => set({ settings }),
         }),
