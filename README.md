@@ -57,10 +57,6 @@ Consumet API – multi-provider anime support
 
 ⬜ Manga Reader Support(soon)
 
-⬜ Comick
-
-⬜ Mangadex
-
 ⬜ More...
 
 ✅ Episode Tracker & Profile Pages
@@ -115,7 +111,7 @@ Submit a pull request
 
 Or just give us a ⭐ and share with friends — that helps too!
 
-📬 Feature suggestions? DM us on Instagram @its.dark.devil
+📬 Feature suggestions? DM us on Instagram @the._.voidborn
 
 📬 Contact
 Instagram: @the._.voidborn
